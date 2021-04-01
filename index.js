@@ -37,16 +37,13 @@ client.connect(err => {
 
     app.get('/product/:id', (req, res) => {
         const sProduct = req.params.id;
-        // console.log('sProduct', sProduct);
         productCollection.find({ _id: ObjectId(req.params.id) })
             .toArray((err, documents) => {
-                // console.log('documents', documents);
                 res.send(documents[0]);
             })
     })
 
     app.delete('/delete/:id', (req, res) => {
-        // console.log(req.params.id);
         productCollection.deleteOne({ _id: ObjectId(req.params.id) })
             .then(result => {
                 console.log('delete', result);
@@ -82,5 +79,5 @@ app.get('/', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:${port}`)
 })
